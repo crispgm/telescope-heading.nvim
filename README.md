@@ -4,6 +4,8 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 
 It is very simple and only supports Markdown headings from h1 to h6.
 
+[Demo](https://asciinema.org/a/410656)
+
 ## Setup
 
 ```lua

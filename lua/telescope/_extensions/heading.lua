@@ -21,9 +21,20 @@ local function get_headings()
         '##### ',
         '###### ',
     }
+    local is_code_block = false
     while index <= total do
         local line = vim.fn.getline(index)
-        for _, pattern in ipairs(matches) do
+        -- process markdown code blocks
+        if vim.startswith(line, '```') then
+            is_code_block = not is_code_block
+            goto next
+        else
+            if is_code_block then
+                goto next
+            end
+        end
+        -- match heading
+        for _, pattern in pairs(matches) do
             if vim.startswith(line, pattern) then
                 table.insert(headings, {
                     heading = vim.trim(line),
@@ -32,6 +43,8 @@ local function get_headings()
                 break
             end
         end
+
+        ::next::
         index = index + 1
     end
 

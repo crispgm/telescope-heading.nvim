@@ -5,7 +5,7 @@ if not telescope_installed then
 end
 
 local actions = require('telescope.actions')
-local actions_set = require'telescope.actions.set'
+local actions_set = require('telescope.actions.set')
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
 local conf = require('telescope.config').values

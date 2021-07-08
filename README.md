@@ -15,7 +15,7 @@ paq 'crispgm/telescope-heading.nvim'
 
 You can setup the extension by adding the following to your config:
 ```lua
-require'telescope'.load_extension('heading')
+require('telescope').load_extension('heading')
 ```
 
 ## Usage

@@ -23,3 +23,9 @@ require'telescope'.load_extension('heading')
 ```viml
 :Telescope heading
 ```
+
+## Development
+
+```bash
+nvim --noplugin -u scripts/minimal_init.vim ./README.md # replace with /path/to/testfile
+```

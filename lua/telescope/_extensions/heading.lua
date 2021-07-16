@@ -12,6 +12,9 @@ local conf = require('telescope.config').values
 
 local function get_headings()
     local index, total = 1, vim.fn.line('$')
+    local bufnr = vim.api.nvim_get_current_buf()
+    local filepath = vim.api.nvim_buf_get_name(bufnr)
+
     local headings = {}
     local matches = {
         '# ',
@@ -39,6 +42,7 @@ local function get_headings()
                 table.insert(headings, {
                     heading = vim.trim(line),
                     line = index,
+                    path = filepath,
                 })
                 break
             end
@@ -66,9 +70,12 @@ local function pick_headings(opts)
                     value = entry.line,
                     display = entry.heading,
                     ordinal = entry.heading,
+                    filename = entry.path,
+                    lnum = entry.line,
                 }
             end,
         },
+        previewer = conf.qflist_previewer(opts),
         sorter = conf.file_sorter(opts),
         attach_mappings = function(prompt_bufnr)
             actions_set.select:replace(function()

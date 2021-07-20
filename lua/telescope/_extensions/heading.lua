@@ -63,7 +63,7 @@ local function pick_headings(opts)
     pickers.new(opts, {
         prompt_title = 'Select a heading',
         results_title = 'Headings',
-        finder = finders.new_table{
+        finder = finders.new_table({
             results = headings,
             entry_maker = function(entry)
                 return {
@@ -74,7 +74,7 @@ local function pick_headings(opts)
                     lnum = entry.line,
                 }
             end,
-        },
+        }),
         previewer = conf.qflist_previewer(opts),
         sorter = conf.file_sorter(opts),
         attach_mappings = function(prompt_bufnr)
@@ -88,8 +88,8 @@ local function pick_headings(opts)
     }):find()
 end
 
-return telescope.register_extension{
+return telescope.register_extension({
     exports = {
         heading = pick_headings,
     },
-}
+})

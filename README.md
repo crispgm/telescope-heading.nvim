@@ -1,5 +1,7 @@
 # telescope-heading.nvim
 
+[![build](https://github.com/crispgm/telescope-heading/actions/workflows/ci.yml/badge.svg)](https://github.com/crispgm/telescope-heading/actions/workflows/ci.yml)
+
 An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) that allows you to switch between headings.
 
 It is very simple and only supports Markdown headings from h1 to h6.
@@ -28,6 +30,22 @@ require('telescope').load_extension('heading')
 
 ## Development
 
+Init:
+
+```bash
+make init
+```
+
+Load telescope-heading locally:
+
 ```bash
 nvim --noplugin -u scripts/minimal_init.vim ./README.md # replace with /path/to/testfile
+# or
+make test
+```
+
+Lint:
+
+```bash
+make lint
 ```

@@ -1,6 +1,6 @@
 # telescope-heading.nvim
 
-[![build](https://github.com/crispgm/telescope-heading/actions/workflows/ci.yml/badge.svg)](https://github.com/crispgm/telescope-heading/actions/workflows/ci.yml)
+[![build](https://github.com/crispgm/telescope-heading.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/crispgm/telescope-heading.nvim/actions/workflows/ci.yml)
 
 An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) that allows you to switch between headings.
 

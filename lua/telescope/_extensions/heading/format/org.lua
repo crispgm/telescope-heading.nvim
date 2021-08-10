@@ -22,7 +22,6 @@ function OrgMode.get_headings(filepath, start, total)
             end
         end
 
-        ::next::
         index = index + 1
     end
 

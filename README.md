@@ -4,15 +4,15 @@
 
 An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) that allows you to switch between headings.
 
+![screenshot](/screenshot.png)
+
+[Live Demo](https://asciinema.org/a/410656)
+
 ## Supported File Type
 
 - Markdown (headings from `h1` to `h6`)
 - AsciiDoc (experimental)
 - OrgMode (experimental)
-
-![screenshot](/screenshot.png)
-
-[Live Demo](https://asciinema.org/a/410656)
 
 ## Setup
 

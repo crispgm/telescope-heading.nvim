@@ -1,7 +1,7 @@
 local telescope_installed, telescope = pcall(require, 'telescope')
 
 if not telescope_installed then
-    error('This plugins requires nvim-telescope/telescope.nvim')
+    error('This plugin requires nvim-telescope/telescope.nvim')
 end
 
 local actions = require('telescope.actions')
@@ -11,47 +11,20 @@ local pickers = require('telescope.pickers')
 local conf = require('telescope.config').values
 
 local function get_headings()
+    local mod_path = string.format(
+        'telescope._extensions.heading.format.%s',
+        vim.bo.filetype
+    )
+    local ok, mod = pcall(require, mod_path)
+    if not ok then
+        error('The file type is not supported by telescope-heading')
+        return nil
+    end
+
     local index, total = 1, vim.fn.line('$')
     local bufnr = vim.api.nvim_get_current_buf()
     local filepath = vim.api.nvim_buf_get_name(bufnr)
-
-    local headings = {}
-    local matches = {
-        '# ',
-        '## ',
-        '### ',
-        '#### ',
-        '##### ',
-        '###### ',
-    }
-    local is_code_block = false
-    while index <= total do
-        local line = vim.fn.getline(index)
-        -- process markdown code blocks
-        if vim.startswith(line, '```') then
-            is_code_block = not is_code_block
-            goto next
-        else
-            if is_code_block then
-                goto next
-            end
-        end
-        -- match heading
-        for _, pattern in pairs(matches) do
-            if vim.startswith(line, pattern) then
-                table.insert(headings, {
-                    heading = vim.trim(line),
-                    line = index,
-                    path = filepath,
-                })
-                break
-            end
-        end
-
-        ::next::
-        index = index + 1
-    end
-
+    local headings = mod.get_headings(filepath, index, total)
     return headings
 end
 
@@ -59,7 +32,9 @@ local function pick_headings(opts)
     opts = opts or {}
 
     local headings = get_headings()
-
+    if headings == nil then
+        return
+    end
     pickers.new(opts, {
         prompt_title = 'Select a heading',
         results_title = 'Headings',

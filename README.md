@@ -10,9 +10,10 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 
 ## Supported File Type
 
-- Markdown (headings from `h1` to `h6`)
+- Markdown
 - AsciiDoc (experimental)
 - OrgMode (experimental)
+- ReStructuredText (experimental)
 
 ## Setup
 

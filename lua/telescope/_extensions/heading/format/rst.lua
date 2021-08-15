@@ -32,6 +32,7 @@ function ReStructuredText.get_headings(filepath, start, total)
     }
     local last_line = ''
     local line_mode = 0 -- 1: overline, 2: underline
+    -- luacheck: no unused
     local line_top = 0 -- for underline, there is no line_top, only line_bottom
     local line_title = 0
     local line_bottom = 0
@@ -79,9 +80,8 @@ function ReStructuredText.get_headings(filepath, start, total)
                 break
             end
         end
-        last_line = line
 
-        ::next::
+        last_line = line
         index = index + 1
     end
 

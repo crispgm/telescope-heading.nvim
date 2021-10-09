@@ -10,10 +10,23 @@ local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
 local conf = require('telescope.config').values
 
+local function filetype()
+    local ft_maps = {
+        vimwiki = 'markdown',
+        ['markdown.pandoc'] = 'markdown',
+    }
+    local ft = vim.bo.filetype
+    if ft_maps[ft] ~= nil then
+        ft = ft_maps[ft]
+    end
+
+    return ft
+end
+
 local function get_headings()
     local mod_path = string.format(
         'telescope._extensions.heading.format.%s',
-        vim.bo.filetype
+        filetype()
     )
     local ok, mod = pcall(require, mod_path)
     if not ok then

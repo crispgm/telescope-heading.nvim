@@ -51,8 +51,7 @@ function ReStructuredText.get_headings(filepath, start, total)
                         if
                             line_top
                                 == line_title
-                            and line_title
-                                == line_bottom
+                            and line_title == line_bottom
                         then
                             heading = last_line
                         end

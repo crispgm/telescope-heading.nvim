@@ -17,9 +17,10 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 
 ## Setup
 
+Install with your favorite package manager:
 ```lua
-paq 'nvim-telescope/telescope.nvim'
-paq 'crispgm/telescope-heading.nvim'
+use('nvim-telescope/telescope.nvim')
+use('crispgm/telescope-heading.nvim')
 ```
 
 You can setup the extension by adding the following to your config:

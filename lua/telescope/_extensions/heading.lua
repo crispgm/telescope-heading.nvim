@@ -5,6 +5,7 @@ if not telescope_installed then
 end
 
 local actions = require('telescope.actions')
+local actions_state = require('telescope.actions.state')
 local actions_set = require('telescope.actions.set')
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
@@ -67,7 +68,7 @@ local function pick_headings(opts)
         sorter = conf.file_sorter(opts),
         attach_mappings = function(prompt_bufnr)
             actions_set.select:replace(function()
-                local entry = actions.get_selected_entry()
+                local entry = actions_state.get_selected_entry()
                 actions.close(prompt_bufnr)
                 vim.cmd(string.format('%d', entry.value))
             end)

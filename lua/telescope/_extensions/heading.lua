@@ -13,8 +13,9 @@ local conf = require('telescope.config').values
 
 local function filetype()
     local ft_maps = {
-        vimwiki = 'markdown',
+        ['vimwiki'] = 'markdown',
         ['markdown.pandoc'] = 'markdown',
+        ['tex'] = 'latex'
     }
     local ft = vim.bo.filetype
     if ft_maps[ft] ~= nil then

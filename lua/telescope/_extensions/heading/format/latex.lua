@@ -47,7 +47,7 @@ function Latex.get_headings(filepath, start, total)
         local trimmedline = string.gsub(line, '^%s+', '')
         local headingname = string.match(trimmedline, '^\\%l+') or ''
         headingname = string.sub(headingname, 2)
-        local skip = false
+        local skip
 
         if matchtable[headingname] then
             local firstWordCol = string.len(line) - string.len(trimmedline) + 1

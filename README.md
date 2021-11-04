@@ -14,6 +14,7 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 - AsciiDoc (experimental)
 - OrgMode (experimental)
 - ReStructuredText (experimental)
+- LaTeX (experimental)
 
 ## Setup
 

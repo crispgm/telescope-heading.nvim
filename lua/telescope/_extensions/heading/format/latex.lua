@@ -2,7 +2,7 @@ local Latex = {}
 
 local disallowedEnvs = {
     'texMath',
-    'texComment'
+    'texComment',
 }
 
 local function isDisallowedEnv(lnum, col)

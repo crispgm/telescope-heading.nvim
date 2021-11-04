@@ -15,7 +15,7 @@ local function filetype()
     local ft_maps = {
         ['vimwiki'] = 'markdown',
         ['markdown.pandoc'] = 'markdown',
-        ['tex'] = 'latex'
+        ['tex'] = 'latex',
     }
     local ft = vim.bo.filetype
     if ft_maps[ft] ~= nil then

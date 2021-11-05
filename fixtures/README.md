@@ -4,3 +4,4 @@ The format examples are referenced from:
 - AsciiDoc Example: <https://asciidoctor.org/docs/asciidoc-article/>
 - OrgMode Example: <https://writequit.org/denver-emacs/presentations/files/example.org.html>
 - ReStructuredText Example: <https://fangohr.github.io/computing/rst/rst.txt>
+- LaTeX Example: <http://mally.stanford.edu/~sr/computing/latex-example.html>

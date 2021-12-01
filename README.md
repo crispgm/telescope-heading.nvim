@@ -12,9 +12,10 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 
 - Markdown, including `vimwiki` and `vim-pandoc-syntax`.
 - AsciiDoc (experimental)
+- LaTeX (experimental)
 - OrgMode (experimental)
 - ReStructuredText (experimental)
-- LaTeX (experimental)
+- Vim Help (experimental)
 
 ## Setup
 

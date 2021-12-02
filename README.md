@@ -10,7 +10,7 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 
 ## Supported File Type
 
-- Markdown, including `vimwiki` and `vim-pandoc-syntax`.
+- Markdown, including `vimwiki`, `vim-pandoc-syntax`, and `vim-gfm-syntax`.
 - AsciiDoc (experimental)
 - LaTeX (experimental)
 - OrgMode (experimental)

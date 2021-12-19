@@ -4,7 +4,7 @@
 
 An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) that allows you to switch between headings.
 
-[![asciicast](https://asciinema.org/a/14.png)](https://asciinema.org/a/14)
+[![asciicast](https://asciinema.org/a/410656.svg)](https://asciinema.org/a/410656)
 
 ![screenshot](/screenshot.png)
 

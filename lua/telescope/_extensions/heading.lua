@@ -14,6 +14,7 @@ local conf = require('telescope.config').values
 local function filetype()
     local ft_maps = {
         ['vimwiki'] = 'markdown',
+        ['pandoc'] = 'markdown',
         ['markdown.pandoc'] = 'markdown',
         ['markdown.gfm'] = 'markdown',
         ['tex'] = 'latex',

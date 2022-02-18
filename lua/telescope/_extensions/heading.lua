@@ -34,7 +34,7 @@ local function get_headings()
     )
     local ok, mod = pcall(require, mod_path)
     if not ok then
-        error('The file type is not supported by telescope-heading')
+        vim.notify('The file type is not supported by telescope-heading', vim.log.levels.WARN, { title = 'Telescope heading' })
         return nil
     end
 

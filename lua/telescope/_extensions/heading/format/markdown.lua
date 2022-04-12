@@ -1,8 +1,10 @@
+local heading_config = require('telescope._extensions.heading.config')
+
 local Markdown = {}
 
 function Markdown.get_headings(filepath, start, total)
     local headings = {}
-    if true then
+    if heading_config.treesitter then
         return Markdown.ts_get_headings(filepath)
     end
     local index = start
@@ -62,7 +64,7 @@ function Markdown.ts_get_headings(filepath)
         local line = vim.fn.getline(row + 1)
         table.insert(headings, {
             heading = vim.trim(line),
-            line = row,
+            line = row + 1,
             path = filepath,
         })
     end

@@ -30,6 +30,20 @@ You can setup the extension by adding the following to your config:
 require('telescope').load_extension('heading')
 ```
 
+Use treesitter to query headings. Setup with `telescope.setup` **before** `load_extension`:
+```lua
+local telescope = require('telescope')
+telescope.setup({
+    -- other setups
+    extensions = {
+        heading = {
+            treesitter = true,
+        },
+    },
+})
+
+```
+
 ## Usage
 
 ```viml

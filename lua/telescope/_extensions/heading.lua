@@ -10,6 +10,7 @@ local actions_set = require('telescope.actions.set')
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
 local conf = require('telescope.config').values
+local heading_config = require('telescope._extensions.heading.config')
 
 local function filetype()
     local ft_maps = {
@@ -80,6 +81,7 @@ local function pick_headings(opts)
 end
 
 return telescope.register_extension({
+    setup = heading_config.setup,
     exports = {
         heading = pick_headings,
     },

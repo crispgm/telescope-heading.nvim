@@ -11,11 +11,11 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 ## Supported File Type
 
 - Markdown, including `vimwiki`, `vim-pandoc-syntax`, and `vim-gfm-syntax`.
-- AsciiDoc (experimental)
-- LaTeX (experimental)
-- OrgMode (experimental)
-- ReStructuredText (experimental)
-- Vim Help (experimental)
+- AsciiDoc
+- LaTeX
+- OrgMode
+- ReStructuredText
+- Vim Help
 
 ## Setup
 
@@ -30,11 +30,33 @@ You can setup the extension by adding the following to your config:
 require('telescope').load_extension('heading')
 ```
 
-Use treesitter (which only supports Markdown/ReStructuredText) to query headings. Setup with `telescope.setup` **before** `load_extension`:
+### Tree-sitter Support
+
+telescope-heading supports Tree-sitter for parsing documents and finding headings.
+
+File types with Tree-sitter supports:
+- Markdown
+- ReStructuredText
+- Vim Help
+
 ```lua
+-- add nvim-treesitter
+use('nvim-treesitter/nvim-treesitter')
+
+-- make sure you have already installed treesitter modules
+require('nvim-treesitter.configs').setup({
+    ensure_installed = {
+        -- ..
+        'markdown',
+        'rst',
+        -- ..
+    },
+})
+
+-- enable treesitter parsing
 local telescope = require('telescope')
 telescope.setup({
-    -- other setups
+    -- ...
     extensions = {
         heading = {
             treesitter = true,
@@ -42,7 +64,11 @@ telescope.setup({
     },
 })
 
+-- `load_extension` must be after `telescope.setup`
+telescope.load_extension('heading')
 ```
+
+If nvim-treesitter is not correctly loaded, it will fallback to normal parsing.
 
 ## Usage
 

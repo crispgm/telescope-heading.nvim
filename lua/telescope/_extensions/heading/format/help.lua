@@ -43,4 +43,27 @@ function Help.get_headings(filepath, start, total)
     return headings
 end
 
+function Help.ts_get_headings(filepath, bufnr)
+    local ts = vim.treesitter
+    local query = [[
+    (headline (word)) @headline_title
+    ]]
+    local parsed_query = ts.parse_query('help', query)
+    local parser = ts.get_parser(bufnr, 'help')
+    local root = parser:parse()[1]:root()
+    local start_row, _, end_row, _ = root:range()
+
+    local headings = {}
+    for _, node in parsed_query:iter_captures(root, bufnr, start_row, end_row) do
+        local row, _ = node:range()
+        local line = vim.fn.getline(row + 2)
+        table.insert(headings, {
+            heading = vim.trim(line),
+            line = row + 2,
+            path = filepath,
+        })
+    end
+    return headings
+end
+
 return Help

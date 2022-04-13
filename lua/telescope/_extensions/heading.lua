@@ -28,10 +28,18 @@ local function filetype()
     return ft
 end
 
+local function support_treesitter(ft)
+    if ft == 'markdown' or ft == 'rst' then
+        return true
+    end
+    return false
+end
+
 local function get_headings()
+    local ft = filetype()
     local mod_path = string.format(
         'telescope._extensions.heading.format.%s',
-        filetype()
+        ft
     )
     local ok, mod = pcall(require, mod_path)
     if not ok then
@@ -46,7 +54,12 @@ local function get_headings()
     local index, total = 1, vim.fn.line('$')
     local bufnr = vim.api.nvim_get_current_buf()
     local filepath = vim.api.nvim_buf_get_name(bufnr)
-    local headings = mod.get_headings(filepath, index, total)
+    local headings = {} -- luacheck: ignore
+    if heading_config.treesitter and support_treesitter(ft) then
+        headings = mod.ts_get_headings(filepath, bufnr)
+    else
+        headings = mod.get_headings(filepath, index, total)
+    end
     return headings
 end
 

@@ -1,12 +1,7 @@
-local heading_config = require('telescope._extensions.heading.config')
-
 local Markdown = {}
 
 function Markdown.get_headings(filepath, start, total)
     local headings = {}
-    if heading_config.treesitter then
-        return Markdown.ts_get_headings(filepath)
-    end
     local index = start
     local matches = {
         '# ',
@@ -47,13 +42,12 @@ function Markdown.get_headings(filepath, start, total)
     return headings
 end
 
-function Markdown.ts_get_headings(filepath)
+function Markdown.ts_get_headings(filepath, bufnr)
     local ts = vim.treesitter
     local query = [[
     (atx_heading) @heading
     ]]
     local parsed_query = ts.parse_query('markdown', query)
-    local bufnr = vim.api.nvim_get_current_buf() or 0
     local parser = ts.get_parser(bufnr, 'markdown')
     local root = parser:parse()[1]:root()
     local start_row, _, end_row, _ = root:range()

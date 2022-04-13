@@ -29,8 +29,14 @@ local function filetype()
 end
 
 local function support_treesitter(ft)
-    if ft == 'markdown' or ft == 'rst' then
-        return true
+    local ts_ft_maps = {
+        ['markdown'] = true,
+        ['rst'] = true,
+        ['help'] = true,
+    }
+
+    if ts_ft_maps[ft] ~= nil then
+        return ts_ft_maps[ft]
     end
     return false
 end
@@ -46,7 +52,7 @@ local function get_headings()
         vim.notify(
             'The file type is not supported by telescope-heading',
             vim.log.levels.WARN,
-            { title = 'Telescope heading' }
+            { title = 'Telescope Heading' }
         )
         return nil
     end
@@ -54,13 +60,23 @@ local function get_headings()
     local index, total = 1, vim.fn.line('$')
     local bufnr = vim.api.nvim_get_current_buf()
     local filepath = vim.api.nvim_buf_get_name(bufnr)
-    local headings = {} -- luacheck: ignore
     if heading_config.treesitter and support_treesitter(ft) then
-        headings = mod.ts_get_headings(filepath, bufnr)
-    else
-        headings = mod.get_headings(filepath, index, total)
+        if vim._ts_has_language(ft) then
+            print('ts')
+            return mod.ts_get_headings(filepath, bufnr)
+        else
+            vim.notify(
+                string.format(
+                    'No treesitter language parser installed for [%s]. Fallback to normal parser.',
+                    ft
+                ),
+                vim.log.levels.WARN,
+                { title = 'Telescope Heading' }
+            )
+        end
     end
-    return headings
+
+    return mod.get_headings(filepath, index, total)
 end
 
 local function pick_headings(opts)

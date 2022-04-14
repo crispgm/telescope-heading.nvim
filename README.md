@@ -1,14 +1,17 @@
 # telescope-heading.nvim
 
-[![build](https://github.com/crispgm/telescope-heading.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/crispgm/telescope-heading.nvim/actions/workflows/ci.yml)
+<p align="center">
+  <img alt="screenshot" src="screenshot.png" width="578" />
+</p>
 
-An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) that allows you to switch between headings.
+<p align="center">
+  <img alt="GitHub CI" src="https://github.com/crispgm/telescope-heading.nvim/actions/workflows/ci.yml/badge.svg" />
+  <img alt="GitHub Tag" src="https://img.shields.io/github/v/tag/crispgm/telescope-heading.nvim" />
+</p>
 
-![screenshot](/screenshot.png)
+An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) that allows you to switch between document's headings. [Live Demo](https://asciinema.org/a/410656).
 
-[Live Demo](https://asciinema.org/a/410656)
-
-## Supported File Type
+## Supported File Types
 
 - Markdown, including `vimwiki`, `vim-pandoc-syntax`, and `vim-gfm-syntax`.
 - AsciiDoc

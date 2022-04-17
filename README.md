@@ -1,7 +1,7 @@
 # telescope-heading.nvim
 
 <p align="center">
-  <img alt="screenshot" src="screenshot.png" width="578" />
+  <img alt="Preview" src="https://i.imgur.com/LMdp3Cf.gif" />
 </p>
 
 <p align="center">
@@ -9,7 +9,7 @@
   <img alt="GitHub Tag" src="https://img.shields.io/github/v/tag/crispgm/telescope-heading.nvim" />
 </p>
 
-An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) that allows you to switch between document's headings. [Live Demo](https://asciinema.org/a/410656).
+An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) that allows you to switch between document's headings.
 
 ## Supported File Types
 

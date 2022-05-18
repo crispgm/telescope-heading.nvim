@@ -35,7 +35,7 @@ function Neorg.ts_get_headings(filepath, bufnr)
     local ts = vim.treesitter
     local query = [[
     [
-    (heading1) 
+    (heading1)
     (heading2)
     (heading3)
     (heading4)

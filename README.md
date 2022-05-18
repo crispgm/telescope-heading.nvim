@@ -17,6 +17,7 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 - AsciiDoc
 - LaTeX
 - OrgMode
+- Neorg
 - ReStructuredText
 - Vim Help
 
@@ -40,6 +41,7 @@ telescope-heading supports Tree-sitter for parsing documents and finding heading
 File types with Tree-sitter supports:
 - Markdown
 - ReStructuredText
+- Neorg
 - Vim Help
 
 ```lua

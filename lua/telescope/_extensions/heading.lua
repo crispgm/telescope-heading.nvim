@@ -33,6 +33,7 @@ local function support_treesitter(ft)
         ['markdown'] = true,
         ['rst'] = true,
         ['help'] = true,
+        ['norg'] = true,
     }
 
     if ts_ft_maps[ft] ~= nil then

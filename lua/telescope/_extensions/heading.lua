@@ -44,10 +44,8 @@ end
 
 local function get_headings()
     local ft = filetype()
-    local mod_path = string.format(
-        'telescope._extensions.heading.format.%s',
-        ft
-    )
+    local mod_path =
+        string.format('telescope._extensions.heading.format.%s', ft)
     local ok, mod = pcall(require, mod_path)
     if not ok then
         vim.notify(
@@ -86,32 +84,34 @@ local function pick_headings(opts)
     if headings == nil then
         return
     end
-    pickers.new(opts, {
-        prompt_title = 'Select a heading',
-        results_title = 'Headings',
-        finder = finders.new_table({
-            results = headings,
-            entry_maker = function(entry)
-                return {
-                    value = entry.line,
-                    display = entry.heading,
-                    ordinal = entry.heading,
-                    filename = entry.path,
-                    lnum = entry.line,
-                }
+    pickers
+        .new(opts, {
+            prompt_title = 'Select a heading',
+            results_title = 'Headings',
+            finder = finders.new_table({
+                results = headings,
+                entry_maker = function(entry)
+                    return {
+                        value = entry.line,
+                        display = entry.heading,
+                        ordinal = entry.heading,
+                        filename = entry.path,
+                        lnum = entry.line,
+                    }
+                end,
+            }),
+            previewer = conf.qflist_previewer(opts),
+            sorter = conf.file_sorter(opts),
+            attach_mappings = function(prompt_bufnr)
+                actions_set.select:replace(function()
+                    local entry = actions_state.get_selected_entry()
+                    actions.close(prompt_bufnr)
+                    vim.cmd(string.format('%d', entry.value))
+                end)
+                return true
             end,
-        }),
-        previewer = conf.qflist_previewer(opts),
-        sorter = conf.file_sorter(opts),
-        attach_mappings = function(prompt_bufnr)
-            actions_set.select:replace(function()
-                local entry = actions_state.get_selected_entry()
-                actions.close(prompt_bufnr)
-                vim.cmd(string.format('%d', entry.value))
-            end)
-            return true
-        end,
-    }):find()
+        })
+        :find()
 end
 
 return telescope.register_extension({

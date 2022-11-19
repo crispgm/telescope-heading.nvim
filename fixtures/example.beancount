@@ -1,0 +1,26 @@
+* Accounts
+
+** Assets
+2022-11-19 open Assets:Savings
+2022-11-19 open Liabilities:Credit
+2022-11-19 open Assets:Pay
+
+** Expenses
+2022-11-19 open Expenses:Food
+2022-11-19 open Expenses:Electronics
+
+* Food
+
+2022-11-19 * "My Dinner"
+    Expenses:Food             30 CNY
+    Liabilities:Credit
+
+2022-11-19 * "My Lunch"
+    Expenses:Food             10 USD
+    Assets:Pay
+
+* Electronic Devices
+
+2022-11-19 * "iPhone"
+    Expenses:Electronics  119800 JPY
+    Assets:Savings

@@ -30,6 +30,7 @@ end
 
 local function support_treesitter(ft)
     local ts_ft_maps = {
+        ['beancount'] = true,
         ['markdown'] = true,
         ['rst'] = true,
         ['help'] = true,

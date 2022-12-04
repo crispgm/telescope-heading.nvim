@@ -13,38 +13,35 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 
 ## Supported File Types
 
-- AsciiDoc
-- Beancount
-- LaTeX
-- Markdown (including `vimwiki`, `vim-pandoc-syntax`, and `vim-gfm-syntax`)
-- Neorg
-- OrgMode
-- ReStructuredText
-- Vim Help
+| File Type        | Tree-sitter | Notes                                                          |
+| ---------------- | ----------- | -------------------------------------------------------------- |
+| AsciiDoc         | ✅          |                                                                |
+| Beancount        | ✅          |                                                                |
+| LaTeX            | ⬜          |                                                                |
+| Markdown         | ✅          | including `vimwiki`, `vim-pandoc-syntax`, and `vim-gfm-syntax` |
+| Neorg            | ✅          |                                                                |
+| OrgMode          | ⬜          |                                                                |
+| ReStructuredText | ✅          |                                                                |
+| Vim Help         | ✅          |                                                                |
 
 ## Setup
 
 Install with your favorite package manager:
+
 ```lua
 use('nvim-telescope/telescope.nvim')
 use('crispgm/telescope-heading.nvim')
 ```
 
 You can setup the extension by adding the following to your config:
+
 ```lua
 require('telescope').load_extension('heading')
 ```
 
 ### Tree-sitter Support
 
-telescope-heading supports Tree-sitter for parsing documents and finding headings.
-
-File types with Tree-sitter supports:
-- Markdown
-- Neorg
-- ReStructuredText
-- Vim Help
-
+telescope-heading supports Tree-sitter for parsing documents and finding headings. But not all file types are supported, you may check [Supported File Types](#supported-file-types) section and inspect the Tree-sitter column.
 ```lua
 -- add nvim-treesitter
 use('nvim-treesitter/nvim-treesitter')
@@ -74,7 +71,7 @@ telescope.setup({
 telescope.load_extension('heading')
 ```
 
-If nvim-treesitter is not correctly loaded, it will fallback to normal parsing.
+If `nvim-treesitter` was not correctly loaded, it would have fallen back to normal parsing. You may check `nvim-treesitter` configurations and whether your language is `TSInstall`ed.
 
 ## Usage
 
@@ -103,3 +100,11 @@ Lint:
 ```bash
 make lint
 ```
+
+## Contributing
+
+All contributions are welcome.
+
+## License
+
+Copyright 2022 David Zhang. MIT License.

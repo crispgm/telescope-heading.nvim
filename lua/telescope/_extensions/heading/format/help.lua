@@ -46,7 +46,7 @@ end
 function Help.ts_get_headings(filepath, bufnr)
     local ts = vim.treesitter
     local query = [[
-    (headline (word)) @headline_title
+      (h1) @text.title
     ]]
     local parsed_query = ts.parse_query('help', query)
     local parser = ts.get_parser(bufnr, 'help')
@@ -55,11 +55,12 @@ function Help.ts_get_headings(filepath, bufnr)
 
     local headings = {}
     for _, node in parsed_query:iter_captures(root, bufnr, start_row, end_row) do
+        local offset = 2
         local row, _ = node:range()
-        local line = vim.fn.getline(row + 2)
+        local title = vim.fn.getline(row + offset)
         table.insert(headings, {
-            heading = vim.trim(line),
-            line = row + 2,
+            heading = vim.trim(title),
+            line = row + offset,
             path = filepath,
         })
     end

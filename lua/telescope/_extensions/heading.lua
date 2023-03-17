@@ -79,7 +79,7 @@ local function get_headings()
 end
 
 local function pick_headings(opts)
-    opts = opts or {}
+    opts = vim.tbl_deep_extend('keep', opts or {}, heading_config.picker_opts)
 
     local headings = get_headings()
     if headings == nil then

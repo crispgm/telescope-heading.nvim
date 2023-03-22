@@ -73,7 +73,9 @@ telescope.load_extension('heading')
 
 If `nvim-treesitter` was not correctly loaded, it would have fallen back to normal parsing. You may check `nvim-treesitter` configurations and whether your language is `TSInstall`ed.
 
-### Setup telescope picker options
+### Telescope Picker Options
+
+We may specific picker options for telescope-heading, which overrides the general telescope picker options.
 
 ```lua
 local telescope = require('telescope')

@@ -47,7 +47,8 @@ function Markdown.ts_get_headings(filepath, bufnr)
     local query = [[
     (atx_heading) @heading
     ]]
-    local parsed_query = ts.parse_query('markdown', query)
+    local parse_query = ts.query.parse or ts.parse_query
+    local parsed_query = parse_query('markdown', query)
     local parser = ts.get_parser(bufnr, 'markdown')
     local root = parser:parse()[1]:root()
     local start_row, _, end_row, _ = root:range()

@@ -91,7 +91,8 @@ function ReStructuredText.ts_get_headings(filepath, bufnr)
     local query = [[
     (section) (title) @section_title
     ]]
-    local parsed_query = ts.parse_query('rst', query)
+    local parse_query = ts.query.parse or ts.parse_query
+    local parsed_query = parse_query('rst', query)
     local parser = ts.get_parser(bufnr, 'rst')
     local root = parser:parse()[1]:root()
     local start_row, _, end_row, _ = root:range()

@@ -48,7 +48,8 @@ function Help.ts_get_headings(filepath, bufnr)
     local query = [[
       (h1) @text.title
     ]]
-    local parsed_query = ts.parse_query('help', query)
+    local parse_query = ts.query.parse or ts.parse_query
+    local parsed_query = parse_query('help', query)
     local parser = ts.get_parser(bufnr, 'help')
     local root = parser:parse()[1]:root()
     local start_row, _, end_row, _ = root:range()

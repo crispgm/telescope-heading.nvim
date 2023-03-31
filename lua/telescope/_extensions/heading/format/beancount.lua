@@ -33,7 +33,8 @@ function Beancount.ts_get_headings(filepath, bufnr)
     local query = [[
     (section) (headline) (item) @heading
     ]]
-    local parsed_query = ts.parse_query('beancount', query)
+    local parse_query = ts.query.parse or ts.parse_query
+    local parsed_query = parse_query('beancount', query)
     local parser = ts.get_parser(bufnr, 'beancount')
     local root = parser:parse()[1]:root()
     local start_row, _, end_row, _ = root:range()

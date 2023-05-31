@@ -19,6 +19,7 @@ local function filetype()
         ['markdown.pandoc'] = 'markdown',
         ['markdown.gfm'] = 'markdown',
         ['tex'] = 'latex',
+        ['help'] = 'vimdoc',
     }
     local ft = vim.bo.filetype
     if ft_maps[ft] ~= nil then
@@ -33,7 +34,7 @@ local function support_treesitter(ft)
         ['beancount'] = true,
         ['markdown'] = true,
         ['rst'] = true,
-        ['help'] = true,
+        ['vimdoc'] = true,
         ['norg'] = true,
     }
 

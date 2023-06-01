@@ -1,4 +1,4 @@
-local Help = {}
+local Vimdoc = {}
 
 local function is_heading(line, char)
     if #line == 0 then
@@ -14,7 +14,7 @@ local function is_heading(line, char)
     return true
 end
 
-function Help.get_headings(filepath, start, total)
+function Vimdoc.get_headings(filepath, start, total)
     local headings = {}
     local index = start
     local last_line = ''
@@ -43,14 +43,14 @@ function Help.get_headings(filepath, start, total)
     return headings
 end
 
-function Help.ts_get_headings(filepath, bufnr)
+function Vimdoc.ts_get_headings(filepath, bufnr)
     local ts = vim.treesitter
     local query = [[
       (h1) @text.title
     ]]
     local parse_query = ts.query.parse or ts.parse_query
-    local parsed_query = parse_query('help', query)
-    local parser = ts.get_parser(bufnr, 'help')
+    local parsed_query = parse_query('vimdoc', query)
+    local parser = ts.get_parser(bufnr, 'vimdoc')
     local root = parser:parse()[1]:root()
     local start_row, _, end_row, _ = root:range()
 
@@ -68,4 +68,4 @@ function Help.ts_get_headings(filepath, bufnr)
     return headings
 end
 
-return Help
+return Vimdoc

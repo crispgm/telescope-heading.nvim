@@ -22,7 +22,7 @@ An extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nv
 | Neorg            | ✅          |                                                                |
 | OrgMode          | ⬜          |                                                                |
 | ReStructuredText | ✅          |                                                                |
-| Vim Help         | ✅          |                                                                |
+| Vimdoc (help)    | ✅          |                                                                |
 
 ## Setup
 
@@ -127,4 +127,4 @@ All contributions are welcome.
 
 ## License
 
-Copyright 2022 David Zhang. MIT License.
+Copyright 2023 David Zhang. MIT License.

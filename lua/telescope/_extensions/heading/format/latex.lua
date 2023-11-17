@@ -40,13 +40,13 @@ function ArticleHeadingMaker:update_counter(heading_name)
     if heading_name == "section" then
         self.heading_counts["subsection"] = 0
         self.heading_counts["subsubsection"] = 0
-    elseif heading_name == "section" then
+    elseif heading_name == "subsection" then
         self.heading_counts["subsubsection"] = 0
     end
     self.heading_counts[heading_name] = self.heading_counts[heading_name] + 1
 end
 
-function ArticleHeadingMaker:make_display_name(heading_name, section_name)
+function ArticleHeadingMaker:make_display_name(heading_name, section_title)
     local section_num = nil
     if heading_name == "section" then
         section_num = self.heading_counts["section"]
@@ -58,10 +58,10 @@ function ArticleHeadingMaker:make_display_name(heading_name, section_name)
                       .. self.heading_counts["subsection"] .. "."
                       .. self.heading_counts["subsubsection"]
     end
-    if section_name == nil then
-        return section_name
+    if section_title == nil then
+        return section_title
     else
-        return section_num .. ". " .. section_name
+        return section_num .. ". " .. section_title
     end
 end
 
@@ -101,11 +101,12 @@ function Latex.get_headings(filepath, start, total, opts)
 
         if not skip then
             local pattern = "\\" .. headingname .. "{([^}]*)}"
-            local section_name = string.match(vim.trim(line), pattern)
+            local section_title = string.match(vim.trim(line), pattern)
             local display_name = nil
             if opts.use_section_number then
                 article_heading_maker:update_counter(headingname)
-                display_name = article_heading_maker:make_display_name(headingname, section_name)
+                display_name = article_heading_maker:make_display_name(headingname, section_title
+ )
             end
             table.insert(headings, {
                 heading = vim.trim(line),

@@ -61,7 +61,7 @@ function ArticleHeadingMaker:make_display_name(heading_name, section_title)
     if section_title == nil then
         return section_title
     else
-        return section_num .. ". " .. section_title
+        return section_num .. " " .. section_title
     end
 end
 

@@ -23,7 +23,49 @@ local function isDisallowedEnv(lnum, col)
     return false
 end
 
-function Latex.get_headings(filepath, start, total)
+local ArticleHeadingMaker = {}
+ArticleHeadingMaker.__index = ArticleHeadingMaker
+
+function ArticleHeadingMaker:new (matches)
+    local heading_counts = {}
+    for _, m in ipairs(matches) do
+        heading_counts[m] = 0
+    end
+    return setmetatable({
+        heading_counts = heading_counts,
+    }, ArticleHeadingMaker)
+end
+
+function ArticleHeadingMaker:update_counter(heading_name)
+    if heading_name == "section" then
+        self.heading_counts["subsection"] = 0
+        self.heading_counts["subsubsection"] = 0
+    elseif heading_name == "section" then
+        self.heading_counts["subsubsection"] = 0
+    end
+    self.heading_counts[heading_name] = self.heading_counts[heading_name] + 1
+end
+
+function ArticleHeadingMaker:make_display_name(heading_name, section_name)
+    local section_num = nil
+    if heading_name == "section" then
+        section_num = self.heading_counts["section"]
+    elseif heading_name == "subsection" then
+        section_num = self.heading_counts["section"] .. "."
+                      .. self.heading_counts["subsection"]
+    elseif heading_name == "subsubsection" then
+        section_num = self.heading_counts["section"] .. "."
+                      .. self.heading_counts["subsection"] .. "."
+                      .. self.heading_counts["subsubsection"]
+    end
+    if section_name == nil then
+        return section_name
+    else
+        return section_num .. ". " .. section_name
+    end
+end
+
+function Latex.get_headings(filepath, start, total, opts)
     local headings = {}
     local index = start
     local matchtable = {}
@@ -36,10 +78,11 @@ function Latex.get_headings(filepath, start, total)
         'paragraph',
         'subparagraph',
     }
+    local article_heading_maker = ArticleHeadingMaker:new(matches)
 
     -- allows syntax of matchtable[headingname]
     for _, m in ipairs(matches) do
-        matchtable[m] = ''
+        matchtable[m] = true
     end
 
     while index <= total do
@@ -57,8 +100,16 @@ function Latex.get_headings(filepath, start, total)
         end
 
         if not skip then
+            local pattern = "\\" .. headingname .. "{([^}]*)}"
+            local section_name = string.match(vim.trim(line), pattern)
+            local display_name = nil
+            if opts.use_section_number then
+                article_heading_maker:update_counter(headingname)
+                display_name = article_heading_maker:make_display_name(headingname, section_name)
+            end
             table.insert(headings, {
                 heading = vim.trim(line),
+                display = display_name,
                 line = index,
                 path = filepath,
             })

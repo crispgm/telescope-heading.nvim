@@ -45,7 +45,7 @@ local function support_treesitter(ft)
     return false
 end
 
-local function get_headings()
+local function get_headings(opts)
     local ft = filetype()
     local mod_path =
         string.format('telescope._extensions.heading.format.%s', ft)
@@ -77,13 +77,13 @@ local function get_headings()
         end
     end
 
-    return mod.get_headings(filepath, index, total)
+    return mod.get_headings(filepath, index, total, opts)
 end
 
 local function pick_headings(opts)
     opts = vim.tbl_deep_extend('keep', opts or {}, heading_config.picker_opts)
 
-    local headings = get_headings()
+    local headings = get_headings(opts)
     if headings == nil then
         return
     end
@@ -96,7 +96,7 @@ local function pick_headings(opts)
                 entry_maker = function(entry)
                     return {
                         value = entry.line,
-                        display = entry.heading,
+                        display = entry.display or entry.heading,
                         ordinal = entry.heading,
                         filename = entry.path,
                         lnum = entry.line,

@@ -63,7 +63,8 @@ local function get_headings()
     local bufnr = vim.api.nvim_get_current_buf()
     local filepath = vim.api.nvim_buf_get_name(bufnr)
     if heading_config.treesitter and support_treesitter(ft) then
-        if vim._ts_has_language(ft) then
+        local has_lang = pcall(vim.treesitter.language.inspect, ft)
+        if has_lang then
             return mod.ts_get_headings(filepath, bufnr)
         else
             vim.notify(

@@ -94,6 +94,11 @@ telescope.setup({
 })
 ```
 
+### File-type specific picker option
+
+- LaTeX
+  - `use_section_number`: display section number with section title
+
 ## Usage
 
 ```viml
